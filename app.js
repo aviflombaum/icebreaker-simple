@@ -9,8 +9,11 @@ var exitHook = require('exit-hook');
 var app = express();
 
 // Load the Database
-const db = require('./config/db');
-app.db = db;
+const db = require('./db');
+
+(async () => {
+  await db.repos.iceBreakerResponses.create();
+})();
 
 // view engine setups
 app.set('views', path.join(__dirname, 'views'));
@@ -80,6 +83,6 @@ exitHook(function(){
 exitHook(function(){
   console.log("Exiting application server, goodbye!")
 })
-// 
+//
 
 module.exports = app;

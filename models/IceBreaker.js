@@ -8,7 +8,7 @@ class IceBreaker {
   static CreateTable(){
     let sql = `
       CREATE TABLE IF NOT EXISTS icebreakers (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         questionID INTEGER,
         secret TEXT
       )
@@ -45,7 +45,7 @@ class IceBreaker {
     })
 
     return query;
-  }    
+  }
 
   constructor(questionID, emails) {
     this.questionID = questionID;

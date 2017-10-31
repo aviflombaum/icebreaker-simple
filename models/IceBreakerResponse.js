@@ -5,11 +5,10 @@ const Question = require('./Question');
 const pry = require('pryjs')
 
 class IceBreakerResponse {
-  
   static CreateTable(){
     let sql = `
       CREATE TABLE IF NOT EXISTS icebreaker_responses (
-        id INTEGER PRIMARY KEY, 
+        id INTEGER PRIMARY KEY,
         icebreakerID INTEGER,
         questionID INTEGER,
         email TEXT,
@@ -35,7 +34,7 @@ class IceBreakerResponse {
         })
 
         resolve(results)
-      })        
+      })
     })
 
     return query;
@@ -54,7 +53,7 @@ class IceBreakerResponse {
     })
 
     return query;
-  }  
+  }
 
   constructor(icebreakerID, questionID, email, secret) {
     this.icebreakerID = icebreakerID;
@@ -64,7 +63,7 @@ class IceBreakerResponse {
   }
 
   insert(){
-    db.run(`INSERT INTO icebreaker_responses (icebreakerID, questionID, email, secret) 
+    db.run(`INSERT INTO icebreaker_responses (icebreakerID, questionID, email, secret)
       VALUES (?,?,?,?)`, this.icebreakerID, this.questionID, this.email, this.secret)
   }
 
