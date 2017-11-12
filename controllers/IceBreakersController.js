@@ -26,10 +26,16 @@ IceBreakersController.Create = async function (req, res, next) {
 IceBreakersController.Show = async function (req, res, next) {
   const iceBreaker = await IceBreaker.FindBySecret(req.query.secret);
   const iceBreakerResponses = await IceBreakerResponse.FindAllByIceBreakerID(iceBreaker.id);
+  const question = await Question.Find(iceBreaker.questionID);
+  const icebreakerURL = req.protocol + '://' + req.get('host') + req.originalUrl;
+  const siteURL = req.protocol + '://' + req.get('host');
 
   res.render('icebreakers/show', {
     iceBreaker: iceBreaker,
-    iceBreakerResponses: iceBreakerResponses
+    iceBreakerResponses: iceBreakerResponses,
+    question: question,
+    icebreakerURL: icebreakerURL,
+    siteURL: siteURL
   });
 };
 
