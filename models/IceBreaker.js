@@ -57,18 +57,10 @@ class IceBreaker {
 
   save() {
     this.secret = crypto.randomBytes(10).toString('hex');
-
+    const insertSQL = `INSERT INTO icebreakers (question_id, secret) VALUES (?, ?)`
+        
     return new Promise((resolve, reject) => {
-      db
-        .run(`
-          INSERT INTO icebreakers (
-            question_id,
-            secret
-          ) VALUES (?, ?)
-        `, [
-          this.questionID,
-          this.secret
-        ])
+      db.run(insertSQL, this.questionID, this.secret)
         .get(`
           SELECT *
           FROM icebreakers
